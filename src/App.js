@@ -1,10 +1,6 @@
 import { useState } from 'react';
 import './App.css'
 
-const getFilesFromEvent = event => {
-    return Array.prototype.slice.call(event.target.files);
-}
-
 const MAX_COUNT = 5;
 
 function App() {
@@ -27,19 +23,17 @@ function App() {
                     return true;
                 }
             }
-
-            // handleFileEvent(file)
         })
         if (!limitExceeded) setUploadedFiles(uploaded)
 
     }
 
     const handleFileEvent =  (e) => {
-        // const chosenFiles =  getFilesFromEvent(e);
         const chosenFiles = Array.prototype.slice.call(e.target.files)
         handleUploadFiles(chosenFiles);
     }
-	return (
+
+    return (
 		<div className="App">
 
 			<input id='fileUpload' type='file' multiple
@@ -47,9 +41,9 @@ function App() {
                     onChange={handleFileEvent}
                     disabled={fileLimit}
 			/>
+
 			<label htmlFor='fileUpload'>
 				<a  className={`btn btn-primary ${!fileLimit ? '' : 'disabled' } `}>Upload Files</a>
-                {/* <a className='btn btn-primary' disabled={limit} >Upload Files</a> */}
 			</label>
 
 			<div className="uploaded-files-list">
